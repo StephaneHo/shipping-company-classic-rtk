@@ -1,0 +1,52 @@
+{
+  "rentalCategories": [
+    {
+      "name": "Outillage professionnel",
+      "id": 1
+    },
+    {
+      "name": "outillage",
+      "id": 5
+    },
+    {
+      "name": "toto",
+      "id": 6
+    },
+    {
+      "name": "new",
+      "id": 7
+    }
+  ],
+  "rentalSubCategories": [
+    {
+      "id": 1,
+      "name": "Outils decoupe et percage",
+      "categoryId": 1
+    },
+    {
+      "categoryId": 3,
+      "name": "eer",
+      "id": 19
+    },
+    {
+      "categoryId": 2,
+      "name": "efefefeeef",
+      "id": 20
+    },
+    {
+      "categoryId": 2,
+      "name": "efefefeeef",
+      "id": 28
+    },
+    {
+      "categoryId": 5,
+      "name": "marteau piqueur",
+      "id": 30
+    },
+    {
+      "categoryId": 6,
+      "name": "titi",
+      "id": 32
+    }
+  ]
+}

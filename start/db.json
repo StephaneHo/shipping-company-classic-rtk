@@ -1,0 +1,54 @@
+{
+  "rentalCategories": [
+    {
+      "name": "Outillage professionnel",
+      "id": 1
+    },
+    {
+      "name": "une nouvelle categorie",
+      "id": 5
+    }
+  ],
+  "rentalSubCategories": [
+    {
+      "id": 1,
+      "name": "Outils decoupe et percage",
+      "categoryId": 1
+    },
+    {
+      "categoryId": 1,
+      "name": "Espaces Verts",
+      "id": 16
+    },
+    {
+      "categoryId": 3,
+      "name": "eer",
+      "id": 19
+    },
+    {
+      "categoryId": 2,
+      "name": "efefefeeef",
+      "id": 20
+    },
+    {
+      "categoryId": 4,
+      "name": "sdsdfsfd",
+      "id": 21
+    },
+    {
+      "categoryId": 2,
+      "name": "efefefeeef",
+      "id": 28
+    },
+    {
+      "categoryId": 4,
+      "name": "sdsdfsfd2222",
+      "id": 29
+    },
+    {
+      "categoryId": 5,
+      "name": "une nouvelle sous categorie",
+      "id": 30
+    }
+  ]
+}
