@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // WARNING you have to import from "@reduxjs/toolkit/query/react NOT from @reduxjs/toolkit/query/
 
 const shipSubTypeSlice = createApi({
-  reducerPath: "shipSubTypes",
+  reducerPath: "shipSubType",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3005",
   }),
@@ -17,42 +17,42 @@ const shipSubTypeSlice = createApi({
         ) => {
           return [{ type: "RentalSubCategory", id: rentalCategoryId }];
         },
-        query: ({ rentalCategoryId, rentalSubCategoryName }) => {
+        query: ({ shipTypeId, shipSubTypeName }) => {
           return {
-            url: "/rentalSubCategories",
+            url: "/shipSubTypes",
             method: "POST",
             body: {
-              categoryId: rentalCategoryId,
-              name: rentalSubCategoryName,
+              shipTpeId: shipTypeId,
+              name: shipSubTypeName,
             },
           };
         },
       }),
-      fetchRentalSubCategories: builder.query({
+      fetchShipSubTypes: builder.query({
         providesTags: (result, error, category) => {
           return [{ type: "RentalSubCategory", id: category.id }];
         },
-        query: (rentalCategory) => {
+        query: (shipType) => {
           return {
-            url: "/rentalSubCategories",
+            url: "/shipSubTypes",
             params: {
-              categoryId: rentalCategory.id,
+              shipTypeId: shipType.id,
             },
             method: "GET",
           };
         },
       }),
-      deleteRentalSubCategory: builder.mutation({
+      deleteShipSubType: builder.mutation({
         invalidatesTags: (
           result,
           error,
-          { rentalCategoryId, rentalSubCategoryName }
+          { shipTypeId, rentalSubCategoryName }
         ) => {
-          return [{ type: "RentalSubCategory", id: rentalCategoryId }];
+          return [{ type: "RentalSubCategory", id: shipTypeId }];
         },
-        query: (rentalSubCategory) => {
+        query: (shipSubType) => {
           return {
-            url: "/rentalSubCategories/" + rentalSubCategory.id,
+            url: "/shipSubType/" + shipSubType.id,
             method: "DELETE",
           };
         },
@@ -62,8 +62,8 @@ const shipSubTypeSlice = createApi({
 });
 
 export const {
-  useFetchRentalSubCategoriesQuery,
-  useAddRentalSubCategoryMutation,
-  useDeleteRentalSubCategoryMutation,
+  useFetchShipSubTypesQuery,
+  useAddShipSubTypeMutation,
+  useDeleteShipSubTypeMutation,
 } = shipSubTypeSlice;
-export { shipSubTypeSlice as rentalSubCategoriesApi };
+export { shipSubTypeSlice };

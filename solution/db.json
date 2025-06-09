@@ -1,50 +1,42 @@
 {
-  "rentalCategories": [
+  "shipTypes": [
     {
-      "name": "Outillage professionnel",
+      "name": "Alimentaires",
       "id": 1
     },
     {
-      "name": "outillage",
-      "id": 5
-    },
-    {
-      "name": "toto",
-      "id": 6
-    },
-    {
-      "name": "new",
-      "id": 7
+      "name": "Fleurs",
+      "id": 2
     }
   ],
-  "rentalSubCategories": [
+  "shipSubTypes": [
     {
       "id": 1,
       "name": "Outils decoupe et percage",
-      "categoryId": 1
+      "shipTypeId": 1
     },
     {
-      "categoryId": 3,
+      "shipTypeId": 3,
       "name": "eer",
       "id": 19
     },
     {
-      "categoryId": 2,
+      "shipTypeId": 2,
       "name": "efefefeeef",
       "id": 20
     },
     {
-      "categoryId": 2,
+      "shipTypeId": 2,
       "name": "efefefeeef",
       "id": 28
     },
     {
-      "categoryId": 5,
+      "shipTypeId": 5,
       "name": "marteau piqueur",
       "id": 30
     },
     {
-      "categoryId": 6,
+      "shipTypeId": 6,
       "name": "titi",
       "id": 32
     }

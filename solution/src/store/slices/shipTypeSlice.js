@@ -3,38 +3,38 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // WARNING you have to import from "@reduxjs/toolkit/query/react NOT from @reduxjs/toolkit/query/
 
 const shipTypeSlice = createApi({
-  reducerPath: "rentalCategories",
+  reducerPath: "shipType",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3005",
   }),
   endpoints(builder) {
     return {
-      addRentalCategory: builder.mutation({
+      addShipType: builder.mutation({
         invalidatesTags: ["RentalCategory"],
-        query: (rentalCategoryName) => {
+        query: (shipTypeName) => {
           return {
-            url: "/rentalCategories",
+            url: "/shipTypes",
             method: "POST",
             body: {
-              name: rentalCategoryName,
+              name: shipTypeName,
             },
           };
         },
       }),
-      fetchRentalCategories: builder.query({
+      fetchShipTypes: builder.query({
         providesTags: ["RentalCategory"],
         query: () => {
           return {
-            url: "/rentalCategories",
+            url: "/shipTypes",
             method: "GET",
           };
         },
       }),
-      deleteRentalCategory: builder.mutation({
+      deleteShipType: builder.mutation({
         invalidatesTags: ["RentalCategory"],
-        query: (rentalCategory) => {
+        query: (shipType) => {
           return {
-            url: "/rentalCategories/" + rentalCategory.id,
+            url: "/shipTypes/" + shipType.id,
             method: "DELETE",
           };
         },
@@ -44,8 +44,8 @@ const shipTypeSlice = createApi({
 });
 
 export const {
-  useFetchRentalCategoriesQuery,
-  useAddRentalCategoryMutation,
-  useDeleteRentalCategoryMutation,
+  useFetchShipTypesQuery,
+  useAddShipTypeMutation,
+  useDeleteShipTypeMutation,
 } = shipTypeSlice;
 export { shipTypeSlice };

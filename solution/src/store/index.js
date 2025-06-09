@@ -1,18 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { rentalSubCategoriesApi } from "./slices/shipSubTypeSlice";
+import { shipSubTypeSlice } from "./slices/shipSubTypeSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { rentalCategoriesApi } from "./slices/shipTypeSlice";
+import { shipTypeSlice } from "./slices/shipTypeSlice";
 
 export const store = configureStore({
   reducer: {
-    [rentalCategoriesApi.reducerPath]: rentalCategoriesApi.reducer,
-    [rentalSubCategoriesApi.reducerPath]: rentalSubCategoriesApi.reducer,
+    [shipTypeSlice.reducerPath]: shipTypeSlice.reducer,
+    [shipSubTypeSlice.reducerPath]: shipSubTypeSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware()
-      .concat(rentalCategoriesApi.middleware)
-      .concat(rentalSubCategoriesApi.middleware);
+      .concat(shipTypeSlice.middleware)
+      .concat(shipSubTypeSlice.middleware);
   },
 });
 
@@ -21,12 +21,12 @@ setupListeners(store.dispatch);
 window.store = store;
 
 export {
-  useFetchRentalSubCategoriesQuery,
-  useAddRentalSubCategoryMutation,
-  useDeleteRentalSubCategoryMutation,
+  useAddShipSubTypeMutation,
+  useDeleteShipSubTypeMutation,
+  useFetchShipSubTypesQuery,
 } from "./slices/shipSubTypeSlice";
 export {
-  useFetchRentalCategoriesQuery,
-  useAddRentalCategoryMutation,
-  useDeleteRentalCategoryMutation,
+  useAddShipTypeMutation,
+  useFetchShipTypesQuery,
+  useDeleteShipTypeMutation,
 } from "./slices/shipTypeSlice";

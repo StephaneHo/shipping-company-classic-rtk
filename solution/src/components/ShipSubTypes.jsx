@@ -1,9 +1,4 @@
 import { useState } from "react";
-import {
-  useFetchRentalSubCategoriesQuery,
-  useDeleteRentalSubCategoryMutation,
-  useAddRentalSubCategoryMutation,
-} from "../store";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { DocumentIcon } from "@heroicons/react/24/solid";
 import {
@@ -15,33 +10,38 @@ import {
   TEModalBody,
   TEModalFooter,
 } from "tw-elements-react";
-export const ShipSubTypes = ({ category }) => {
-  const { data, error, isLoading } = useFetchRentalSubCategoriesQuery(category);
-  const [removeRentalSubCategory] = useDeleteRentalSubCategoryMutation();
+import {
+  useAddShipSubTypeMutation,
+  useDeleteShipSubTypeMutation,
+  useFetchShipSubTypesQuery,
+} from "../store";
+export const ShipSubTypes = ({ shipType }) => {
+  const { data, error, isLoading } = useFetchShipSubTypesQuery(shipType);
+  const [removeShipSubType] = useDeleteShipSubTypeMutation();
 
   const [showModal, setShowModal] = useState(false);
-  const handleRentalSubCategoryRenove = (subcategory) => {
-    removeRentalSubCategory(subcategory);
+  const handleShipSubTypeRemove = (shipSubType) => {
+    removeShipSubType(shipSubType);
   };
 
-  const [subCategoryName, setSubCategoryName] = useState("");
-  const handleOnChangeRentalSubCategory = (event) => {
-    setSubCategoryName(event.target.value);
+  const [shipSubTypeName, setShipSubTypeName] = useState("");
+  const handleOnChangeShipSubType = (event) => {
+    setShipSubTypeName(event.target.value);
   };
 
-  const [addRentalSubCategory] = useAddRentalSubCategoryMutation();
+  const [addShipSubType] = useAddShipSubTypeMutation();
 
-  const handleAddRentalubCategory = () => {
-    console.log("handleAddRentalCategory", subCategoryName);
-    addRentalSubCategory({
-      rentalCategoryId: category.id,
-      rentalSubCategoryName: subCategoryName,
+  const handleAddShipSubType = () => {
+    console.log("handleAddShipSubType", shipSubTypeName);
+    addShipSubType({
+      rentalshipTypeId: shipType.id,
+      rentalSubshipTypeName: shipSubTypeName,
     });
   };
 
-  let renderedRentalSubCategories;
+  let renderedShipSubtypes;
   if (isLoading) {
-    renderedRentalSubCategories = (
+    renderedShipSubtypes = (
       <div role="status">
         <svg
           aria-hidden="true"
@@ -63,19 +63,19 @@ export const ShipSubTypes = ({ category }) => {
       </div>
     );
   } else if (error) {
-    renderedRentalSubCategories = (
+    renderedShipSubtypes = (
       <div>Erreur lors du chargement des sous-categories</div>
     );
   } else {
-    renderedRentalSubCategories = data.map((subCategory) => {
+    renderedShipSubtypes = data.map((subshipType) => {
       return (
-        <div key={subCategory.id} className="mx-20 mb-2 border rounded">
+        <div key={subshipType.id} className="mx-20 mb-2 border rounded">
           <div className="flex p-2 justify-between items-center cursor-pointer">
             <div className="flex">
               <DocumentIcon className="h-6 w-6 text-green-500 mx-2" />
-              {subCategory.name}
+              {subshipType.name}
               <button
-                onClick={() => handleRentalSubCategoryRenove(subCategory)}
+                onClick={() => handleShipSubTypeRemove(subshipType)}
                 className="mx-3"
               >
                 <TrashIcon className="h-6 w-6 text-blue-500" />
@@ -143,10 +143,10 @@ export const ShipSubTypes = ({ category }) => {
                   name="name"
                   id="name"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-green-500 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="Type category name"
+                  placeholder="Type shipType name"
                   required=""
-                  onChange={handleOnChangeRentalSubCategory}
-                  value={subCategoryName}
+                  onChange={handleOnChangeShipSubType}
+                  value={shipSubTypeName}
                 />
               </div>
             </TEModalBody>
@@ -163,7 +163,7 @@ export const ShipSubTypes = ({ category }) => {
               <TERipple rippleColor="light">
                 <button
                   type="button"
-                  onClick={handleAddRentalubCategory}
+                  onClick={handleAddShipSubType}
                   className="ml-1 inline-block rounded bg-green-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-green-700 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                 >
                   Sauver la sous categorie
@@ -174,7 +174,7 @@ export const ShipSubTypes = ({ category }) => {
         </TEModalDialog>
       </TEModal>
 
-      <div>{renderedRentalSubCategories}</div>
+      <div>{renderedShipSubtypes}</div>
     </div>
   );
 };

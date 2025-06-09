@@ -1,13 +1,13 @@
-import {
-  useFetchRentalCategoriesQuery,
-  useDeleteRentalCategoryMutation,
-} from "../store";
 import { RentalSubCategories } from "./ShipSubTypes";
 import { useState } from "react";
 
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { FolderIcon } from "@heroicons/react/24/solid";
-import { useAddRentalCategoryMutation } from "../store/slices/shipTypeSlice";
+import {
+  useAddShipTypeMutation,
+  useDeleteShipTypeMutation,
+  useFetchShipTypesQuery,
+} from "../store/slices/shipTypeSlice";
 import { LoadingIndicator } from "../UI/LoadingIndicator";
 import { ErrorBlock } from "../UI/ErrorBlock";
 import {
@@ -23,52 +23,52 @@ import {
 export const ShipTypes = () => {
   const [showModal, setShowModal] = useState(false);
 
-  const { data, error, isLoading } = useFetchRentalCategoriesQuery();
-  const [removeRentalCategory] = useDeleteRentalCategoryMutation();
+  const { data, error, isLoading } = useFetchShipTypesQuery();
+  const [removeShipType] = useDeleteShipTypeMutation();
 
-  const handleCategoryRemove = (category) => {
-    removeRentalCategory(category);
+  const handleShipTypeRemove = (shipType) => {
+    removeShipType(shipType);
   };
 
-  const [categoryName, setCategoryName] = useState("");
+  const [shipTypeName, setShipTypeName] = useState("");
   const handleOnChangeRentalCategory = (event) => {
-    setCategoryName(event.target.value);
+    setShipTypeName(event.target.value);
   };
 
-  const [addRentalCategory] = useAddRentalCategoryMutation();
+  const [addShipType] = useAddShipTypeMutation();
 
-  const handleAddRentalCategory = () => {
-    addRentalCategory(categoryName);
+  const handleAddShipType = () => {
+    addShipType(shipTypeName);
   };
 
-  let renderedRentalCategories;
+  let renderedShipTypes;
   if (isLoading) {
-    renderedRentalCategories = <LoadingIndicator />;
+    renderedShipTypes = <LoadingIndicator />;
   } else if (error) {
-    renderedRentalCategories = (
+    renderedShipTypes = (
       <ErrorBlock
         title="impossible de recuperer les categories"
         message={error.info}
       />
     );
   } else {
-    renderedRentalCategories = data.map((category) => {
+    renderedShipTypes = data.map((shipType) => {
       return (
-        <div key={category.id}>
+        <div key={shipType.id}>
           <div className="flex p-2 justify-between items-center cursor-pointer">
             <div className="flex text-2xl">
               <FolderIcon className="h-6 w-6 text-blue-500 mx-2" />
-              {category.name}
+              {shipType.name}
 
               <button
-                onClick={() => handleCategoryRemove(category)}
+                onClick={() => handleShipTypeRemove(shipType)}
                 className="mx-3"
               >
                 <TrashIcon className="h-6 w-6 text-blue-500" />
               </button>
             </div>
           </div>
-          <RentalSubCategories category={category} />
+          <RentalSubCategories category={shipType} />
         </div>
       );
     });
@@ -138,7 +138,7 @@ export const ShipTypes = () => {
                     placeholder="Type category name"
                     required=""
                     onChange={handleOnChangeRentalCategory}
-                    value={categoryName}
+                    value={shipTypeName}
                   />
                 </div>
               </TEModalBody>
@@ -155,7 +155,7 @@ export const ShipTypes = () => {
                 <TERipple rippleColor="light">
                   <button
                     type="button"
-                    onClick={handleAddRentalCategory}
+                    onClick={handleAddShipType}
                     className="ml-1 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                   >
                     Sauver la categorie
@@ -166,7 +166,7 @@ export const ShipTypes = () => {
           </TEModalDialog>
         </TEModal>
       </div>
-      {renderedRentalCategories}
+      {renderedShipTypes}
     </div>
   );
 };
