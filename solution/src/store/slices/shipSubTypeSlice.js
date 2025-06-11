@@ -22,7 +22,7 @@ const shipSubTypeSlice = createApi({
             url: "/shipSubTypes",
             method: "POST",
             body: {
-              shipTpeId: shipTypeId,
+              shipTypeId: shipTypeId,
               name: shipSubTypeName,
             },
           };

@@ -34,8 +34,8 @@ export const ShipSubTypes = ({ shipType }) => {
   const handleAddShipSubType = () => {
     console.log("handleAddShipSubType", shipSubTypeName);
     addShipSubType({
-      rentalshipTypeId: shipType.id,
-      rentalSubshipTypeName: shipSubTypeName,
+      shipTypeId: shipType.id,
+      shipSubTypeName: shipSubTypeName,
     });
   };
 

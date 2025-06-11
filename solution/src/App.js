@@ -1,4 +1,4 @@
-import { RentalCategories } from "./components/RentalCategories";
+import { ShipTypes } from "./components/ShipTypes";
 
 export default function App() {
   const handleResetClick = () => {
@@ -11,7 +11,7 @@ export default function App() {
         Reinitialiser les listes
       </button>
       <hr />
-      <RentalCategories />
+      <ShipTypes />
       <hr />
     </div>
   );

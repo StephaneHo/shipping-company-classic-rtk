@@ -1,4 +1,3 @@
-import { RentalSubCategories } from "./ShipSubTypes";
 import { useState } from "react";
 
 import { TrashIcon } from "@heroicons/react/24/solid";
@@ -19,6 +18,7 @@ import {
   TEModalBody,
   TEModalFooter,
 } from "tw-elements-react";
+import { ShipSubTypes } from "./ShipSubTypes";
 
 export const ShipTypes = () => {
   const [showModal, setShowModal] = useState(false);
@@ -68,7 +68,7 @@ export const ShipTypes = () => {
               </button>
             </div>
           </div>
-          <RentalSubCategories category={shipType} />
+          <ShipSubTypes shipType={shipType} />
         </div>
       );
     });

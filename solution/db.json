@@ -7,6 +7,10 @@
     {
       "name": "Fleurs",
       "id": 2
+    },
+    {
+      "name": "new",
+      "id": 3
     }
   ],
   "shipSubTypes": [
@@ -39,6 +43,41 @@
       "shipTypeId": 6,
       "name": "titi",
       "id": 32
+    },
+    {
+      "shipTpeId": 3,
+      "name": "new",
+      "id": 33
+    },
+    {
+      "shipTpeId": 3,
+      "name": "new",
+      "id": 34
+    },
+    {
+      "shipTpeId": 3,
+      "name": "new",
+      "id": 35
+    },
+    {
+      "shipTpeId": 3,
+      "name": "new",
+      "id": 36
+    },
+    {
+      "shipTpeId": 2,
+      "name": "the",
+      "id": 37
+    },
+    {
+      "shipTpeId": 3,
+      "name": "test",
+      "id": 38
+    },
+    {
+      "shipTypeId": 3,
+      "name": "test",
+      "id": 39
     }
   ]
 }
